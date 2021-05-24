@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" name="" value="Add post" class="bottom">
+    </form>
+    <section>
+        <ul>
+            {% for post in page.object_list %}
+                <li>
+                    <div>
+                        <img src="{{MEDIA_URL}}{{post.pic}}"/>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    <div>
+        <div>
+            {% if page.has_previous %}
+                <a href="{% url 'index' %}?page={{ page.previous_page_number }}" class="text-dark">Previous Page</a>
+            {% endif %}
+        </div>
+        <div>
+            {% if page.has_next %}
+                <a href="{% url 'index' %}?page={{ page.next_page_number }}" class="text-dark">Next Page</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
