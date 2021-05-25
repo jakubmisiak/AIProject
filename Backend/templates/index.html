@@ -5,17 +5,18 @@
     <title>Title</title>
 </head>
 <body>
+    <a>Detect face on photo!</a>
     <form enctype="multipart/form-data" method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <input type="submit" name="" value="Add post" class="bottom">
+        <input type="submit" name="" value="Detect" class="bottom">
     </form>
     <section>
         <ul>
             {% for post in page.object_list %}
                 <li>
                     <div>
-                        <img src="{{MEDIA_URL}}{{post.pic}}"/>
+                        <img src="{{ MEDIA_URL }}{{post.pic}}"/>
                     </div>
                 </li>
             {% endfor %}
